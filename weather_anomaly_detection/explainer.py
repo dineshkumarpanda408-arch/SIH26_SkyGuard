@@ -13,7 +13,6 @@ Features:
 
 import numpy as np
 import pandas as pd
-import shap
 from typing import Dict, List, Any, Optional
 import plotly.graph_objects as go
 from detector import WeatherAnomalyDetector
@@ -50,6 +49,12 @@ class AnomalyExplainer:
         self.model = detector.clf.detector_  # scikit-learn IsolationForest from PyOD
 
         self.point_cache = {}
+        # Imported here rather than at module scope: `shap` pulls in
+        # shap.plots -> matplotlib.pyplot, and backend.app.routes.deep_dive
+        # imports this module at app start. A module-level import made every
+        # worker pay that cost before the server could answer a health check.
+        import shap
+
         if background_data is not None:
             bg_clean, _, _ = self.detector._preprocess(background_data)
             if len(bg_clean) > sample_size:

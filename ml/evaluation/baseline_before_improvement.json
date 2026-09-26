@@ -1,0 +1,88 @@
+{
+  "produced_by": "reproduce_baseline.py (pre-improvement)",
+  "artifact": "skyguard_v2",
+  "dataset": "sample_weather_v2",
+  "sha256": "69b56c7757035ee64bf979fede8499e94c7968c3004cd16037a37baede17b4fe",
+  "threshold": 0.72,
+  "n": 1300,
+  "performance": {
+    "n": 1300,
+    "tp": 55,
+    "fp": 3,
+    "fn": 89,
+    "tn": 1153,
+    "precision": 0.9483,
+    "recall": 0.3819,
+    "f1": 0.5446,
+    "accuracy": 0.9292,
+    "false_positive_rate": 0.0026,
+    "false_negative_rate": 0.6181,
+    "roc_auc": 0.7506,
+    "confusion_matrix": {
+      "tn": 1153,
+      "fp": 3,
+      "fn": 89,
+      "tp": 55,
+      "grid": [
+        [
+          1153,
+          3
+        ],
+        [
+          89,
+          55
+        ]
+      ]
+    }
+  },
+  "model_versions": {
+    "v2": {
+      "precision": 0.9483,
+      "recall": 0.3819,
+      "f1": 0.5446,
+      "roc_auc": 0.7506
+    }
+  },
+  "per_category": {
+    "SPIKE": {
+      "injected": 15,
+      "detected": 12,
+      "recall": 0.8,
+      "mean_score": 0.7738,
+      "max_score": 0.8644,
+      "pct_score_gt_0.72": 0.7738
+    },
+    "DROP": {
+      "injected": 15,
+      "detected": 10,
+      "recall": 0.6667,
+      "mean_score": 0.7458,
+      "max_score": 0.8557,
+      "pct_score_gt_0.72": 0.7458
+    },
+    "DRIFT": {
+      "injected": 48,
+      "detected": 33,
+      "recall": 0.6875,
+      "mean_score": 0.7595,
+      "max_score": 0.8458,
+      "pct_score_gt_0.72": 0.7595
+    },
+    "FROZEN_SENSOR": {
+      "injected": 36,
+      "detected": 0,
+      "recall": 0.0,
+      "mean_score": 0.5026,
+      "max_score": 0.6643,
+      "pct_score_gt_0.72": 0.5026
+    },
+    "MISSING_DATA": {
+      "injected": 30,
+      "detected": 0,
+      "recall": 0.0,
+      "mean_score": 0.4343,
+      "max_score": 0.5139,
+      "pct_score_gt_0.72": 0.4343
+    }
+  }
+}
