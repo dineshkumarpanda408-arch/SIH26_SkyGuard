@@ -40,12 +40,12 @@ services:
       # Vite 8.3.0 requires node ^20.19.0 || >=22.12.0 or the build fails.
       - key: NODE_VERSION
         value: "22"
-      # Must include the scheme. Render's `fromService: property: host` returns a
-      # bare hostname (skyguard-backend.onrender.com) with no https:// prefix,
-      # which frontend/src/api.ts treats as a RELATIVE url -> every fetch 404s.
+      # Render appended the "-0pgq" suffix because the name `skyguard-backend`
+      # was already taken, so the service's real host is
+      # skyguard-backend-0pgq.onrender.com. These values MUST match the URL
+      # Render prints as "Available at your primary URL", or every fetch from
+      # the static site targets a different (nonexistent) host.
       - key: VITE_API_URL
-        value: https://skyguard-backend.onrender.com
-      # frontend/src/pages/Live.tsx falls back to window.location.host, which on
-      # the static site is the frontend domain and has no /api/live websocket.
+        value: https://skyguard-backend-0pgq.onrender.com
       - key: VITE_WS_URL
-        value: wss://skyguard-backend.onrender.com/api/live
+        value: wss://skyguard-backend-0pgq.onrender.com/api/live
