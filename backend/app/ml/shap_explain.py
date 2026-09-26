@@ -19,8 +19,13 @@ to the explainer to keep the attribution in the model's true input space.
 
 import numpy as np
 
-import shap
-
+# NOTE: `shap` is deliberately NOT imported at module scope. Importing it pulls in
+# shap.plots -> matplotlib.pyplot and the whole sklearn.ensemble tree, which cost
+# several seconds of CPU and a large chunk of RSS. Doing that at import time meant
+# the app could not answer Render's health check until the ML stack had fully
+# loaded, so a 0.1 CPU free instance spent longer booting than the health check
+# allows and got restarted in a loop. The first SHAP explanation now pays that
+# cost lazily, on the request that actually needs it.
 _TREE_EXPLAINER = None
 
 
@@ -30,6 +35,8 @@ def _explainer(model):
     detector = getattr(model, "model", None)
     if detector is None:
         return None
+    import shap
+
     key = id(detector)
     if _TREE_EXPLAINER is None or getattr(_TREE_EXPLAINER, "_detector_id", None) != key:
         data = None
