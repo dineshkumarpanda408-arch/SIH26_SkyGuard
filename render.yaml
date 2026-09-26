@@ -20,11 +20,11 @@ services:
   # ----------------------------------------------------------------------------
   # Frontend Static Site (React 18 + Vite)
   # ----------------------------------------------------------------------------
+  # NOTE: static sites must NOT set `region` (global CDN) or `plan` (no compute
+  # plan). Render rejects the whole Blueprint if either is present.
   - type: web
     name: skyguard-frontend
     runtime: static
-    region: oregon
-    plan: free
     buildCommand: cd frontend && npm ci && npm run build
     staticPublishPath: frontend/dist
     routes:
