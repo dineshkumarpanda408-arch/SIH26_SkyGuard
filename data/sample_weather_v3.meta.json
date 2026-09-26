@@ -1,0 +1,53 @@
+{
+  "dataset_version": "sample_weather_v3",
+  "synthetic": true,
+  "generator": "backend/data_generator_v3.py",
+  "seed": 91,
+  "regime_seed": 4242,
+  "episode_seed": 777,
+  "stations": [
+    "AWS-001",
+    "AWS-002",
+    "AWS-003",
+    "AWS-004",
+    "AWS-005",
+    "AWS-006",
+    "AWS-007",
+    "AWS-008",
+    "AWS-009",
+    "AWS-010",
+    "AWS-011",
+    "AWS-012",
+    "AWS-013",
+    "AWS-014",
+    "AWS-015",
+    "AWS-016",
+    "AWS-017",
+    "AWS-018",
+    "AWS-019",
+    "AWS-020",
+    "AWS-021",
+    "AWS-022",
+    "AWS-023",
+    "AWS-024"
+  ],
+  "n_stations": 24,
+  "n_observations": 138240,
+  "records_per_station": 5760,
+  "interval_minutes": 15,
+  "start": "2026-06-01 00:00:00",
+  "days": 60,
+  "variables": [
+    "temperature",
+    "pressure",
+    "humidity"
+  ],
+  "regimes": [
+    "warm/cool phase",
+    "dry/humid phase",
+    "pressure rise/fall",
+    "episodic rain"
+  ],
+  "sha256": "7d20d2d1a990813087fd712499905e27e0f82d5e1ef8ab93c2dc39a08d618511",
+  "note": "Synthetic, station-distinct weather telemetry (lat/elevation/diurnal/spatial-correlation + regime/rain drivers). Not real observed weather."
+}

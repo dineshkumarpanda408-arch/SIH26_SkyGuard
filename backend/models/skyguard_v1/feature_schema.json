@@ -1,0 +1,35 @@
+{
+  "model_version": "skyguard-multivariate-v1",
+  "features": [
+    "temperature",
+    "pressure",
+    "humidity",
+    "t_celsius",
+    "vapor_pressure_sat",
+    "dew_point",
+    "humidity_vs_vapor",
+    "mixing_ratio",
+    "delta_t",
+    "delta_p",
+    "temperature_change",
+    "temperature_rolling_mean",
+    "temperature_rolling_std",
+    "temperature_roc",
+    "temperature_volatility",
+    "pressure_change",
+    "pressure_rolling_mean",
+    "pressure_rolling_std",
+    "pressure_roc",
+    "pressure_volatility",
+    "humidity_change",
+    "humidity_rolling_mean",
+    "humidity_rolling_std",
+    "humidity_roc",
+    "humidity_volatility"
+  ],
+  "feature_engineering": [
+    "temporal: change/rolling_mean/rolling_std/roc/volatility/hour",
+    "multivariate: dew_point/humidity_vs_vapor/mixing_ratio/delta_t/delta_p"
+  ],
+  "grouping": "per-station feature engineering to avoid cross-station bleed"
+}

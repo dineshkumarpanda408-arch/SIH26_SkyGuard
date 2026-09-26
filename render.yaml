@@ -1,0 +1,46 @@
+services:
+  # ----------------------------------------------------------------------------
+  # Backend Web Service (FastAPI + Uvicorn)
+  # ----------------------------------------------------------------------------
+  - type: web
+    name: skyguard-backend
+    runtime: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: DATA_DIR
+        value: ./data
+
+  # ----------------------------------------------------------------------------
+  # Frontend Static Site (React 18 + Vite)
+  # ----------------------------------------------------------------------------
+  - type: web
+    name: skyguard-frontend
+    runtime: static
+    region: oregon
+    plan: free
+    buildCommand: cd frontend && npm ci && npm run build
+    staticPublishPath: frontend/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      # Vite 8.3.0 requires node ^20.19.0 || >=22.12.0 or the build fails.
+      - key: NODE_VERSION
+        value: "22"
+      # Must include the scheme. Render's `fromService: property: host` returns a
+      # bare hostname (skyguard-backend.onrender.com) with no https:// prefix,
+      # which frontend/src/api.ts treats as a RELATIVE url -> every fetch 404s.
+      - key: VITE_API_URL
+        value: https://skyguard-backend.onrender.com
+      # frontend/src/pages/Live.tsx falls back to window.location.host, which on
+      # the static site is the frontend domain and has no /api/live websocket.
+      - key: VITE_WS_URL
+        value: wss://skyguard-backend.onrender.com/api/live

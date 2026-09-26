@@ -1,0 +1,12 @@
+# Weather Anomaly Detection & Diagnostic Intelligence System
+# SIH Hackathon Edition Dependencies
+
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.10.0
+scikit-learn>=1.2.0
+pyod>=2.0.0
+shap>=0.44.0
+streamlit>=1.30.0
+plotly>=5.18.0
+matplotlib>=3.7.0

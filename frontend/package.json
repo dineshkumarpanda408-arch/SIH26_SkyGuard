@@ -1,0 +1,35 @@
+{
+  "name": "skyguard-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@react-leaflet/core": "2.1.0",
+    "leaflet": "^1.9.4",
+    "plotly.js-dist-min": "^4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-leaflet": "4.2.1",
+    "react-router-dom": "^7.18.4",
+    "recharts": "^2.13.3"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.9.12",
+    "@types/plotly.js-dist-min": "^2.3.4",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.6.3",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1"
+  }
+}
