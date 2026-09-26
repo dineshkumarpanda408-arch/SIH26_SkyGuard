@@ -9,6 +9,11 @@ services:
     plan: free
     buildCommand: pip install -r backend/requirements.txt
     startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
+    # Required: this app has no `/` route (only `/api/health` and the routers
+    # under `/api`). Render's default health check path is `/`, which 404s, so
+    # the service is never promoted to serve traffic and requests hang
+    # indefinitely instead of failing fast. This route is unauthenticated.
+    healthCheckPath: /api/health
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.8
