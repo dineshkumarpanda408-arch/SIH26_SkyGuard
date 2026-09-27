@@ -46,6 +46,6 @@ services:
       # Render prints as "Available at your primary URL", or every fetch from
       # the static site targets a different (nonexistent) host.
       - key: VITE_API_URL
-        value: https://skyguard-backend-0pgq.onrender.com
+        value: https://skyguard-backend-0pgq.onrender.com/api
       - key: VITE_WS_URL
         value: wss://skyguard-backend-0pgq.onrender.com/api/live

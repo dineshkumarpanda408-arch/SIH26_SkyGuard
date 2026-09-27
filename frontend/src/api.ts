@@ -21,7 +21,14 @@ import type {
   AuthError,
 } from './types';
 
-const BASE = (import.meta.env.VITE_API_URL || '/api').replace(/\/$/, '');
+function getBaseUrl(): string {
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (!envUrl || envUrl === '/api') return '/api';
+  const clean = envUrl.replace(/\/$/, '');
+  return clean.endsWith('/api') ? clean : `${clean}/api`;
+}
+
+const BASE = getBaseUrl();
 
 const cache = new Map<string, { data: unknown; ts: number }>();
 const CACHE_TTL = 60_000; // 60 seconds

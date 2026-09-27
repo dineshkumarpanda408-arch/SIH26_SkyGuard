@@ -44,6 +44,16 @@ app.include_router(auth.router, prefix="/api")
 skyguard.initialize()
 
 
+@app.get("/")
+def root():
+    return {
+        "status": "online",
+        "system": "SKYGUARD AI — Intelligent AWS Anomaly Detection",
+        "health": "/api/health",
+        "docs": "/docs",
+    }
+
+
 @app.get("/api/health")
 def health():
     return {"status": "online", "system": "SKYGUARD AI", "model_trained": skyguard.model.trained}
