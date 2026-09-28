@@ -361,7 +361,7 @@ export default function Login() {
           <div className="text-xs text-slate-300 leading-relaxed">
             Username <code className="text-sky-300 font-mono">skyguard</code> · Pattern{' '}
             <span className="text-slate-100">🌡️ → 💧 → 📊 → ⚡</span> · PIN{' '}
-            <code className="text-sky-300 font-mono">{meta ? '\u2022\u2022\u2022\u2022\u2022\u2022' : '739214'}</code>
+            <code className="text-sky-300 font-mono">739214</code>
           </div>
         </div>
       </div>
